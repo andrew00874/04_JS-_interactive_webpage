@@ -9,6 +9,16 @@ body {
   font-family: "Noto Sans KR", sans-serif; /* 가독성 좋은 한글 폰트 */
   line-height: 1.6;
   color: #333;
+  transition: background-color 0.4s, color 0.4s;
+}
+
+button {
+  font-size: 16px;
+  padding: 12px 25px;
+  cursor: pointer;
+  border: 2px solid #333;
+  border-radius: 8px;
+  background-color: white;
 }
 
 body.dark-mode {
