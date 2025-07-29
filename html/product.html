@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>상품명 - 무진장 쇼핑몰</title>
+    <link rel="stylesheet" href="../css/product.css" />
+    <link rel="icon" type="image/png" href="../images/icon.png" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="./home.html">무진장</a>
+            <button id="darkmode">다크모드 활성화</button>
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="/new">신상품</a></li>
+                <li><a href="/best">베스트</a></li>
+                <li><a href="/outer">아우터</a></li>
+                <li><a href="/top">상의</a></li>
+                <li><a href="/bottom">하의</a></li>
+                <li><a href="/board">게시판</a></li>
+            </ul>
+        </nav>
+        <div>
+            <a href="./signup.html">회원가입</a>
+            <a href="/login">로그인</a>
+            <a href="/cart">장바구니</a>
+            <a href="/mypage">마이페이지</a>
+        </div>
+    </header>
+
+    <main class="product-detail-page">
+        <section class="product-main-info">
+            <div class="product-image">
+                <img src="https://via.placeholder.com/600" alt="상품 상세 이미지" />
+            </div>
+
+            <div class="product-purchase-info">
+                <h2 class="product-name">상품명이 표시되는 곳입니다.</h2>
+
+                <p class="product-price">0원</p>
+
+                <hr />
+
+                <div class="product-options">
+                    <div class="option">
+                        <label for="color-select">색상:</label>
+                        <select name="color" id="color-select">
+                            <option value="">색상을 선택하세요</option>
+                            <option value="black">블랙</option>
+                            <option value="white">화이트</option>
+                        </select>
+                    </div>
+                    <div class="option">
+                        <label for="size-select">사이즈:</label>
+                        <select name="size" id="size-select">
+                            <option value="">사이즈를 선택하세요</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="quantity-selector">
+                    <label for="quantity">수량:</label>
+                    <button class="quantity-btn minus">-</button>
+                    <input type="number" id="quantity" value="1" min="1" />
+                    <button class="quantity-btn plus">+</button>
+                </div>
+
+                <div class="total-price-section">
+                    <span>총 상품금액:</span>
+                    <span class="total-price">0원</span>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-cart">장바구니</button>
+                    <button class="btn-buy">구매하기</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="product-extra-info">
+            <div class="tabs">
+                <button class="tab-link active" data-tab="details">상세 정보</button>
+                <button class="tab-link" data-tab="reviews">상품 후기</button>
+                <button class="tab-link" data-tab="shipping">배송/교환/반품 안내</button>
+            </div>
+
+            <div id="details" class="tab-content active">
+                <h3>상품 상세 정보</h3>
+                <p>여기에 상품의 상세 설명이 들어갑니다. 이미지나 긴 텍스트가 포함될 수 있습니다.</p>
+                <div class="product-detail-image">
+                    <img src="https://via.placeholder.com/800x400" alt="상세 설명 이미지">
+                </div>
+            </div>
+
+            <div id="reviews" class="tab-content">
+                <h3>상품 후기</h3>
+                <div class="review-item">
+                    <p class="review-author">김*진</p>
+                    <p class="review-text">옷이 정말 예뻐요! 배송도 빠르고 만족합니다.</p>
+                    <p class="review-date">2025-07-30</p>
+                </div>
+                <div class="review-item">
+                    <p class="review-author">이*아</p>
+                    <p class="review-text">사이즈가 잘 맞네요. 다른 색상도 구매하고 싶어요.</p>
+                    <p class="review-date">2025-07-29</p>
+                </div>
+            </div>
+
+            <div id="shipping" class="tab-content">
+                <h3>배송/교환/반품 안내</h3>
+                <p><strong>배송 안내:</strong></p>
+                <p>- 기본 배송비는 3,000원이며, 50,000원 이상 구매 시 무료배송입니다.</p>
+                <p>- 주문 후 평균 2~3일 이내에 상품을 받으실 수 있습니다. (주말/공휴일 제외)</p>
+                <br>
+                <p><strong>교환/반품 안내:</strong></p>
+                <p>- 상품 수령 후 7일 이내에 신청 가능합니다.</p>
+                <p>- 고객 변심에 의한 교환/반품 시 왕복 배송비가 부과될 수 있습니다.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 무진장. All rights reserved.</p>
+            <ul>
+                <li><a href="./about.html">회사소개</a></li>
+                <li><a href="./terms.html">이용약관</a></li>
+                <li><a href="./policy.html">개인정보처리방침</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="../js/product.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

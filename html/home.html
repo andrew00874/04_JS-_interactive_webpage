@@ -1,93 +1,88 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>무진장 쇼핑몰</title>
-    <meta
-      name="description"
-      content="최신 트렌드의 다양한 의류를 만나보세요."
-    />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="icon" type="image/png" href="../images/icon.png" />
-    <script
-      src="https://code.jquery.com/jquery-3.7.1.min.js"
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <header>
-      <h1>
-        <a>무진장</a>
-        <button id="darkmode">다크모드 활성화</button>
-      </h1>
-      <nav>
-        <ul>
-          <li><a href="/new">신상품</a></li>
-          <li><a href="/best">베스트</a></li>
-          <li><a href="/outer">아우터</a></li>
-          <li><a href="/top">상의</a></li>
-          <li><a href="/bottom">하의</a></li>
-          <li><a href="/board">게시판</a></li>
-        </ul>
-      </nav>
-      <div>
-        <a href="./signup.html">회원가입</a>
-        <a href="/login">로그인</a>
-        <a href="/cart">장바구니</a>
-        <a href="/mypage">마이페이지</a>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>무진장 쇼핑몰</title>
+  <meta name="description" content="최신 트렌드의 다양한 의류를 만나보세요." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" type="image/png" href="../images/icon.png" />
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <header>
+    <h1>
+      <a href="./home.html">무진장</a>
+      <button id="darkmode">다크모드 활성화</button>
+    </h1>
+    <nav>
+      <ul>
+        <li><a href="/new">신상품</a></li>
+        <li><a href="/best">베스트</a></li>
+        <li><a href="/outer">아우터</a></li>
+        <li><a href="/top">상의</a></li>
+        <li><a href="/bottom">하의</a></li>
+        <li><a href="/board">게시판</a></li>
+      </ul>
+    </nav>
+    <div>
+      <a href="./signup.html">회원가입</a>
+      <a href="/login">로그인</a>
+      <a href="/cart">장바구니</a>
+      <a href="/mypage">마이페이지</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="main-banner">
+      <h2>시즌오프 세일!</h2>
+      <p>전 상품 최대 50% 할인</p>
+    </section>
+
+    <section class="product-list">
+      <h2>추천 상품</h2>
+      <div class="products">
+        <article class="product-item">
+          <a href="./product.html?id=1">
+            <img
+              src="https://image.msscdn.net/thumbnails/images/goods_img/20210428/1924274/1924274_17152551704806_big.jpg?w=1200"
+              alt="상품 이미지 1" />
+            <div class="product-info">
+              <h3 class="product-name">[MADE] 쿨링 와이드 밴딩 팬츠</h3>
+              <p class="product-price">29,900원</p>
+            </div>
+          </a>
+        </article>
+        <article class="product-item">
+          <a href="./product.html?id=2">
+            <img
+              src="https://image.msscdn.net/thumbnails/images/goods_img/20240326/3993145/3993145_17153177813685_big.jpg?w=1200"
+              alt="상품 이미지 2" />
+            <div class="product-info">
+              <h3 class="product-name">여름 오버핏 반팔 티셔츠</h3>
+              <p class="product-price">18,000원</p>
+            </div>
+          </a>
+        </article>
       </div>
-    </header>
+    </section>
+  </main>
 
-    <main>
-      <section class="main-banner">
-        <h2>시즌오프 세일!</h2>
-        <p>전 상품 최대 50% 할인</p>
-      </section>
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 무진장. All rights reserved.</p>
+      <ul>
+        <li><a href="./about.html">회사소개</a></li>
+        <li><a href="terms.html">이용약관</a></li>
+        <li><a href="policy.html">개인정보처리방침</a></li>
+      </ul>
+    </div>
+  </footer>
 
-      <section class="product-list">
-        <h2>추천 상품</h2>
-        <div class="products">
-          <article class="product-item">
-            <a href="/product/1">
-              <img
-                src="https://image.msscdn.net/thumbnails/images/goods_img/20210428/1924274/1924274_17152551704806_big.jpg?w=1200"
-                alt="상품 이미지 1"
-              />
-              <div class="product-info">
-                <h3 class="product-name">[MADE] 쿨링 와이드 밴딩 팬츠</h3>
-                <p class="product-price">29,900원</p>
-              </div>
-            </a>
-          </article>
-          <article class="product-item">
-            <a href="/product/2">
-              <img
-                src="https://image.msscdn.net/thumbnails/images/goods_img/20240326/3993145/3993145_17153177813685_big.jpg?w=1200"
-                alt="상품 이미지 2"
-              />
-              <div class="product-info">
-                <h3 class="product-name">여름 오버핏 반팔 티셔츠</h3>
-                <p class="product-price">18,000원</p>
-              </div>
-            </a>
-          </article>
-        </div>
-      </section>
-    </main>
+  <script src="../js/main.js"></script>
+</body>
 
-    <footer>
-      <div class="footer-content">
-        <p>&copy; 2025 무진장. All rights reserved.</p>
-        <ul>
-          <li><a href="./about.html">회사소개</a></li>
-          <li><a href="terms.html">이용약관</a></li>
-          <li><a href="policy.html">개인정보처리방침</a></li>
-        </ul>
-      </div>
-    </footer>
-
-    <script src="../js/main.js"></script>
-  </body>
 </html>
