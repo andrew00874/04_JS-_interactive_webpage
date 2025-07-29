@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회사 소개</title>
+    <style>
+      /* 기본 스타일 */
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        line-height: 1.7;
+        color: #333;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* 전체를 감싸는 컨테이너 */
+      .container {
+        position: relative;
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 40px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      /* 뒤로가기 버튼 */
+      .back-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 8px 12px;
+        background-color: #f1f3f5;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        color: #495057;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+      }
+      .back-button:hover {
+        background-color: #e9ecef;
+      }
+
+      /* 제목 */
+      h1 {
+        text-align: center;
+        font-size: 2.5em;
+        color: #212529;
+        margin-bottom: 20px;
+      }
+
+      /* 부제목 (미션, 비전 등) */
+      h2 {
+        font-size: 1.8em;
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 10px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+      }
+
+      /* 본문 단락 */
+      p {
+        font-size: 1em;
+        color: #555;
+        margin-bottom: 1.2em;
+      }
+
+      /* 지도 iframe */
+      .map-container {
+        margin-top: 40px;
+      }
+
+      .map-container iframe {
+        width: 100%; /* 너비를 100%로 설정하여 반응형으로 만듦 */
+        height: 450px;
+        border: 0;
+        border-radius: 8px;
+      }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <a href="javascript:history.back()" class="back-button">← 뒤로가기</a>
+
+      <h1>About Us</h1>
+
+      <h2>우리의 비전 ✨</h2>
+      <p>
+        저희 무진장은 단순한 의류 판매를 넘어, 고객 개개인의 개성과 스토리를
+        표현하는 패션을 제안합니다. 우리는 최신 트렌드와 최고의 품질을 결합하여
+        모든 사람이 자신만의 스타일을 찾고 자신감을 얻을 수 있도록 돕는 것을
+        목표로 합니다.
+      </p>
+      <p>
+        지속 가능한 패션을 추구하며, 환경과 사회에 긍정적인 영향을 미치는
+        브랜드가 되기 위해 끊임없이 노력하고 있습니다. 고객님의 일상에 특별한
+        순간을 더하는 것, 그것이 바로 저희의 가장 큰 기쁨입니다.
+      </p>
+
+      <h2>오시는 길 🗺️</h2>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.3800282599477!2d126.98169507632353!3d37.569668023947756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2e7a005c9c5%3A0xac4890a924a29f30!2z642U7KGw7J2A7Lu07ZOo7YSw7JWE7Lm0642w66-47ZWZ7JuQIOyiheuhnOy6oO2NvOyKpA!5e0!3m2!1sko!2skr!4v1753766486746!5m2!1sko!2skr"
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+body {
+  font-family: "Malgun Gothic", "맑은 고딕", sans-serif;
+  line-height: 1.8;
+  color: #333;
+  background-color: #f9f9f9;
+}
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+/* 이 부분을 추가하세요 */
+.back-button {
+  position: relative; /* container를 기준으로 자유롭게 위치 */
+  top: 30px;
+  left: 30px;
+  padding: 8px 12px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.back-button:hover {
+  background-color: #e0e0e0;
+}
+h1 {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #333;
+  padding-bottom: 15px;
+}
+h2 {
+  font-size: 22px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+h3 {
+  font-size: 18px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+p,
+ol {
+  font-size: 15px;
+  margin-bottom: 1em;
+}
+ol {
+  padding-left: 20px;
+}
+li {
+  margin-bottom: 0.5em;
+}
+.addendum {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+  font-size: 14px;
+  color: #555;
+}
+.addendum h3 {
+  font-size: 16px;
+}
