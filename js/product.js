@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  fetch("../json/product.json")
+  fetch("./json/product.json")
     .then((res) => {
       if (!res.ok) {
         throw new Error(`데이터 파일을 찾을 수 없습니다. (HTTP ${res.status})`);
