@@ -13,6 +13,10 @@ body {
   border: 1px solid #ddd;
   border-radius: 8px;
 }
+
+.main-banner{
+  background-color: #ff6b6b;
+}
 /* 이 부분을 추가하세요 */
 .back-button {
   position: relative; /* container를 기준으로 자유롭게 위치 */

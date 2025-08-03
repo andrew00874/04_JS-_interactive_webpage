@@ -84,7 +84,7 @@ main {
 
 /* 메인 배너 섹션 */
 .main-banner {
-  background-color: #f0f0f0;
+  background-color: #e49292;
   padding: 60px 40px;
   text-align: center;
   margin-bottom: 50px;
@@ -99,6 +99,30 @@ main {
 .main-banner p {
   font-size: 18px;
   color: #555;
+}
+
+/* 다크 모드용 메인 배너*/
+/* --- 다크 모드용 메인 배너 --- */
+body.dark-mode .main-banner {
+  background-color: #345e5a;
+  border: 1px solid #eee ;
+  /* 기존 다크모드 버튼과 비슷한 어두운 색상 */
+}
+
+body.dark-mode .main-banner h2 {
+  color: #ecf0f1;
+  /* 밝은 텍스트 색상 */
+}
+
+body.dark-mode .main-banner p {
+  color: #bdc3c7;
+  /* 부제목을 위한 약간 더 부드러운 밝은 색상 */
+}
+
+body.dark-mode .product-price {
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(233, 195, 125);
 }
 
 /* 상품 리스트 섹션 */

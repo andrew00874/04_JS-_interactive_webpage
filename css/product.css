@@ -31,6 +31,18 @@ body.dark-mode button {
     color: #ecf0f1;
 }
 
+body.dark-mode .product-price{
+    color: white;
+}
+
+body.dark-mode .tab-link{
+    color: white;
+}
+
+body.dark-mode .tab-link.active{
+    color: rgb(100, 212, 191);
+}
+
 a {
     text-decoration: none;
     color: inherit;

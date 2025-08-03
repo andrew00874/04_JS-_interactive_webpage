@@ -1,3 +1,30 @@
+$(function () {
+  // Function to apply the theme based on the value in localStorage
+  function applyTheme() {
+    if (localStorage.getItem("darkMode") === "enabled") {
+      $("body").addClass("dark-mode");
+    } else {
+      $("body").removeClass("dark-mode");
+    }
+  }
+
+  // Apply the theme as soon as the page loads
+  applyTheme();
+
+  // Event handler for the dark mode button
+  $("#darkmode").click(() => {
+    // Toggle the .dark-mode class on the body
+    $("body").toggleClass("dark-mode");
+
+    // Check if dark mode is now enabled or disabled and save it to localStorage
+    if ($("body").hasClass("dark-mode")) {
+      localStorage.setItem("darkMode", "enabled");
+    } else {
+      localStorage.removeItem("darkMode");
+    }
+  });
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -108,4 +135,25 @@ function displayError(message) {
   if (extraInfoDiv) {
     extraInfoDiv.style.display = 'none';
   }
-}
+};
+
+
+    // 모든 탭 링크와 탭 콘텐츠를 가져옵니다.
+const tabLinks = document.querySelectorAll('.tab-link');
+const tabContents = document.querySelectorAll('.tab-content');
+
+    // 각 탭 링크에 클릭 이벤트를 추가합니다.
+tabLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    // 클릭된 탭의 data-tab 속성 값을 가져옵니다 (예: "details").
+    const tabId = link.getAttribute('data-tab');
+
+    // 1. 모든 탭 링크와 콘텐츠에서 'active' 클래스를 제거합니다.
+    tabLinks.forEach(item => item.classList.remove('active'));
+    tabContents.forEach(item => item.classList.remove('active'));
+
+    // 2. 클릭된 탭 링크와 해당하는 콘텐츠에만 'active' 클래스를 추가합니다.
+    link.classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+  });
+});
