@@ -115,7 +115,7 @@ $(function () {
 
   // 💡 3. JSON 데이터를 가져와서 초기 화면을 설정하고, 네비게이션 이벤트 핸들러 등록
   // $.get() 메서드로 product.json 파일의 데이터를 가져옵니다.
-  $.get("../json/product.json", function (products) {
+  $.get("./json/product.json", function (products) {
     // 가져온 상품 데이터를 allProducts 변수에 저장
     // $.get()은 JSON을 자동으로 파싱해주므로, response.json() 과정이 필요 없습니다.
     allProducts = products;
