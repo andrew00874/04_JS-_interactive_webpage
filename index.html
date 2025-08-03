@@ -29,12 +29,33 @@
       </ul>
     </nav>
     <div>
+      <input type="text" id="search" placeholder="검색어 입력" />
+      <l class="fa-solid fa-magnifying-glass" id="glass"></l>
       <a href="./signup.html">회원가입</a>
-      <a href="/login">로그인</a>
+      <a id="login">로그인</a>
       <a href="/cart">장바구니</a>
     </div>
   </header>
-
+    <div class="modal-overlay" id="loginModal">
+      <div class="modal-content">
+        <button class="close-btn" id="closeModal">×</button>
+        <div class="modal-title">🔐 로그인</div>
+    
+        <form id="loginForm">
+          <div class="form-group">
+            <label>아이디</label>
+            <input type="text" placeholder="아이디를 입력하세요" />
+          </div>
+    
+          <div class="form-group">
+            <label>비밀번호</label>
+            <input type="password" placeholder="비밀번호를 입력하세요" />
+          </div>
+    
+          <button type="submit" class="login-btn">로그인</button>
+        </form>
+      </div>
+    </div>
   <main>
     <section class="main-banner">
       <h2>시즌오프 세일!</h2>
@@ -63,6 +84,7 @@
     </div>
   </footer>
 
+  <script src="https://kit.fontawesome.com/8d9a455979.js" crossorigin="anonymous"></script>
   <script src="./js/main.js"></script>
 </body>
 

@@ -84,6 +84,26 @@ $(function () {
     }
   });
 
+  $("#login").click(function () {
+    // 여기에 모달 열기 코드 작성
+    $("#loginModal").css("display", "flex");
+    $("#loginModal").fadeIn(300);
+  });
+  
+  $("#closeModal").click(function () {
+    // 여기에 모달 닫기 코드 작성
+    $("#loginModal").fadeOut(300);
+    $("#loginModal").css("display", "none");
+  });
+  
+  $("#loginModal").click(function (e) {
+    // 여기에 배경 클릭 시 모달 닫기 코드 작성
+    // HINT: e.target === this 조건 사용
+    if (e.target === this) {
+      $("#loginModal").fadeOut(300);
+      $("#loginModal").css("display", "none");
+    }
+  });
   // 💡 1. 모든 상품 데이터를 저장할 변수 선언
   let allProducts = [];
 
@@ -164,6 +184,14 @@ $(function () {
       );
       renderProducts(bottomProducts);
     });
+
+    $("#glass").click((e) => {
+      e.preventDefault();
+      const searchedProduct = allProducts.filter(
+        (product) => product.name.includes($("#search").val().trim())
+      );
+      renderProducts(searchedProduct);
+    })
   }).fail(function (error) {
     // 에러 처리
     console.error("상품 데이터를 불러오는 중 오류 발생:", error);
