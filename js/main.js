@@ -89,13 +89,13 @@ $(function () {
     $("#loginModal").css("display", "flex");
     $("#loginModal").fadeIn(300);
   });
-  
+
   $("#closeModal").click(function () {
     // 여기에 모달 닫기 코드 작성
     $("#loginModal").fadeOut(300);
     $("#loginModal").css("display", "none");
   });
-  
+
   $("#loginModal").click(function (e) {
     // 여기에 배경 클릭 시 모달 닫기 코드 작성
     // HINT: e.target === this 조건 사용
@@ -131,7 +131,6 @@ $(function () {
       productContainer.appendChild(productItem);
     });
   }
-  
 
   // 💡 3. JSON 데이터를 가져와서 초기 화면을 설정하고, 네비게이션 이벤트 핸들러 등록
   // $.get() 메서드로 product.json 파일의 데이터를 가져옵니다.
@@ -187,13 +186,23 @@ $(function () {
 
     $("#glass").click((e) => {
       e.preventDefault();
-      const searchedProduct = allProducts.filter(
-        (product) => product.name.includes($("#search").val().trim())
+      const searchedProduct = allProducts.filter((product) =>
+        product.name.includes($("#search").val().trim())
       );
       renderProducts(searchedProduct);
-    })
+    });
+
+    $("#search").keyup((e) => {
+      e.preventDefault();
+      if (e.key === "Enter") {
+        const searchedProduct = allProducts.filter((product) =>
+          product.name.includes($("#search").val().trim())
+        );
+        renderProducts(searchedProduct);
+      }
+    });
   }).fail(function (error) {
     // 에러 처리
     console.error("상품 데이터를 불러오는 중 오류 발생:", error);
   });
-})
+});
