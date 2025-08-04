@@ -13,28 +13,36 @@
 </head>
 
 <body>
-  <header>
-    <h1>
-      <a href="./index.html">무진장</a>
-      <button id="darkmode">다크모드 활성화</button>
-    </h1>
+<header>
+  <div class="header-left">
+    <h1><a href="./index.html">무진장</a></h1>
+  </div>
+
+  <div class="header-right-group">
     <nav>
       <ul>
         <li><a href="#" id="nav-new">신상품</a></li>
         <li><a href="#" id="nav-best">베스트</a></li>
-        <li><a href="#" id="nav-outer">아우터</a></li>
         <li><a href="#" id="nav-top">상의</a></li>
         <li><a href="#" id="nav-bottom">하의</a></li>
+        <li><a href="#" id="nav-outer">아우터</a></li>
         <li><a href="/board">게시판</a></li>
       </ul>
     </nav>
-    <div>
+    <div class="user-menu">
       <input type="text" id="search" placeholder="검색어 입력" />
-      <l class="fa-solid fa-magnifying-glass" id="glass"></l>
+      <i class="fa-solid fa-magnifying-glass" id="glass"></i>
       <a href="./signup.html">회원가입</a>
       <a id="login">로그인</a>
       <a href="/cart">장바구니</a>
+      <button id="darkmode">다크모드</button>
     </div>
+  </div>
+
+  <button class="nav-toggle">
+    <i class="fas fa-bars"></i>
+  </button>
+</header>
   </header>
     <div class="modal-overlay" id="loginModal">
       <div class="modal-content">

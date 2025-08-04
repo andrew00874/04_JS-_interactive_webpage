@@ -118,7 +118,6 @@ header .fa-magnifying-glass {
   font-size: 18px;
 }
 
-
 /* --- 로그인 모달 --- */
 /*
   모달 관련 스타일은 `.modal-overlay` 클래스 하위에 작성하여
@@ -333,23 +332,106 @@ footer {
   color: #fff;
 }
 
+/* --- 기존 CSS 코드... --- */
+
+/* --- Header --- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  border-bottom: 1px solid #eee;
+  height: 80px;
+  position: relative; /* 자식 요소의 absolute 포지셔닝을 위해 추가 */
+}
+
+.header-right-group {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* 모바일용 햄버거 버튼 (평상시에는 숨김) */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* --- 기존 CSS 코드... --- */
+
 /* --- 반응형 웹 디자인 --- */
+
+/* 모바일 & 태블릿 (768px 이하) */
 @media (max-width: 768px) {
   header {
-    flex-direction: column;
-    height: auto;
-    padding: 20px;
+    /* 로고를 왼쪽에 확실히 고정시키기 위해 flex-start로 변경합니다. */
+    justify-content: flex-start;
   }
 
-  header nav {
-    margin: 15px 0;
+  .nav-toggle {
+    display: block;
+    /* absolute 포지션으로 헤더의 오른쪽 끝에 고정시킵니다. */
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%); /* 세로 중앙 정렬 */
+    z-index: 1001;
+  }
+  /* 메뉴 그룹을 화면에서 숨기고, 세로로 배치 */
+  .header-right-group {
+    display: none; /* 기본적으로 메뉴 숨김 */
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 250px; /* 메뉴 너비 */
+    height: 100vh; /* 화면 전체 높이 */
+    background-color: #ffffff;
+    padding: 80px 20px 20px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  /* JS로 is-active 클래스가 추가되면 메뉴 보이기 */
+  .header-right-group.is-active {
+    display: flex;
+  }
+
+  /* 다크모드일 때 모바일 메뉴 배경 */
+  body.dark-mode .header-right-group {
+    background-color: #2c3e50;
+  }
+
+  /* 모바일 메뉴 내부 아이템 정렬 */
+  .header-right-group nav ul,
+  .user-menu {
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start; /* 왼쪽 정렬 */
   }
 
   .products {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 
   .main-banner h2 {
     font-size: 28px;
+  }
+}
+
+/* 더 작은 모바일 화면 (480px 이하) */
+@media (max-width: 480px) {
+  .products {
+    grid-template-columns: 1fr; /* 상품 목록을 1열로 변경 */
   }
 }

@@ -64,6 +64,12 @@
 //     })
 //     .catch((error) => console.error("상품 데이터를 불러오는 중 오류 발생:", error));
 // });
+$(function () {
+  // 햄버거 메뉴 토글 기능
+  $(".nav-toggle").click(function () {
+    $(".header-right-group").toggleClass("is-active");
+  });
+});
 
 $(function () {
   // 다크모드 기능 (기존과 동일)
