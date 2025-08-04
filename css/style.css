@@ -65,19 +65,14 @@ header h1 a {
 }
 
 header #darkmode {
-  font-size: 14px;
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  background-color: #f9f9f9;
   cursor: pointer;
 }
 
-body.dark-mode header #darkmode {
+/* body.dark-mode header #darkmode {
   background-color: #34495e;
   border-color: #ecf0f1;
   color: #ecf0f1;
-}
+} */
 
 header nav ul {
   display: flex;
@@ -366,72 +361,62 @@ header {
   cursor: pointer;
 }
 
-/* --- 기존 CSS 코드... --- */
-
-/* --- 반응형 웹 디자인 --- */
-
-/* 모바일 & 태블릿 (768px 이하) */
 @media (max-width: 768px) {
   header {
-    /* 로고를 왼쪽에 확실히 고정시키기 위해 flex-start로 변경합니다. */
-    justify-content: flex-start;
+    padding: 0 20px;
   }
 
+  /* 햄버거 버튼 보이기 */
   .nav-toggle {
     display: block;
-    /* absolute 포지션으로 헤더의 오른쪽 끝에 고정시킵니다. */
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%); /* 세로 중앙 정렬 */
-    z-index: 1001;
   }
-  /* 메뉴 그룹을 화면에서 숨기고, 세로로 배치 */
+
+  /* 메뉴 그룹을 평소에 숨기고, 슬라이드 패널처럼 스타일링 */
   .header-right-group {
-    display: none; /* 기본적으로 메뉴 숨김 */
-    flex-direction: column;
+    display: none; /* 평소에는 숨김 */
     position: absolute;
     top: 0;
     right: 0;
-    width: 250px; /* 메뉴 너비 */
+    width: 250px; /* 메뉴 패널 너비 */
     height: 100vh; /* 화면 전체 높이 */
     background-color: #ffffff;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
     padding: 80px 20px 20px;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    gap: 30px;
+    box-shadow: -3px 0 15px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%); /* 오른쪽 화면 밖으로 이동 */
   }
 
-  /* JS로 is-active 클래스가 추가되면 메뉴 보이기 */
+  /* 메뉴가 활성화되면(열리면) 보이도록 설정 */
   .header-right-group.is-active {
     display: flex;
+    transform: translateX(0); /* 원래 위치로 이동 */
   }
 
-  /* 다크모드일 때 모바일 메뉴 배경 */
-  body.dark-mode .header-right-group {
-    background-color: #2c3e50;
-  }
-
-  /* 모바일 메뉴 내부 아이템 정렬 */
+  /* 열린 메뉴 내부의 아이템들을 세로로 정렬 */
   .header-right-group nav ul,
   .user-menu {
     flex-direction: column;
+    align-items: flex-start;
     width: 100%;
-    align-items: flex-start; /* 왼쪽 정렬 */
+    gap: 25px;
+  }
+  .user-menu #search {
+    width: 100%;
   }
 
   .products {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .main-banner h2 {
-    font-size: 28px;
   }
 }
 
-/* 더 작은 모바일 화면 (480px 이하) */
+/* 더 작은 모바일 화면 */
 @media (max-width: 480px) {
   .products {
-    grid-template-columns: 1fr; /* 상품 목록을 1열로 변경 */
+    grid-template-columns: 1fr;
   }
 }
