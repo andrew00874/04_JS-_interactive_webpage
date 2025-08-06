@@ -212,3 +212,122 @@ $(function () {
     console.error("상품 데이터를 불러오는 중 오류 발생:", error);
   });
 });
+
+// login 모듈
+
+$(document).ready(function () {
+  // --- 변수 선언 ---
+  const $loginModal = $("#loginModal");
+  const $loginBtn = $("#login");
+  const $closeModalBtn = $("#closeModal");
+  const $loginForm = $("#loginForm");
+  const $userMenu = $(".user-menu");
+
+  // --- 함수 선언 ---
+
+  /** 로그인 상태에 따라 헤더 메뉴를 업데이트하는 함수 */
+  function updateHeaderUI(user) {
+    // 로그아웃 상태일 때
+    if (!user) {
+      const loggedOutMenu = `
+        <div class="search-box">
+          <input type="text" id="search" placeholder="검색어 입력" />
+          <i class="fa-solid fa-magnifying-glass" id="glass"></i>
+        </div>
+        <a href="./signup.html">회원가입</a>
+        <a id="login">로그인</a>
+        <a href="/cart">장바구니</a>
+      `;
+      $userMenu.html(loggedOutMenu);
+      // 로그인 버튼에 다시 클릭 이벤트를 연결해야 함
+      $("#login").on("click", openLoginModal);
+    }
+    // 로그인 상태일 때
+    else {
+      const loggedInMenu = `
+        <div class="search-box">
+          <input type="text" id="search" placeholder="검색어 입력" />
+          <i class="fa-solid fa-magnifying-glass" id="glass"></i>
+        </div>
+        <span class="welcome-msg">${user.name}님 환영합니다!</span>
+        <a id="logout">로그아웃</a>
+        <a href="/cart">장바구니</a>
+      `;
+      $userMenu.html(loggedInMenu);
+      // 로그아웃 버튼에 클릭 이벤트 연결
+      $("#logout").on("click", handleLogout);
+    }
+  }
+
+  /** 로그인 모달을 여는 함수 */
+  function openLoginModal() {
+    $loginModal.css("display", "flex");
+  }
+
+  /** 로그인 모달을 닫는 함수 */
+  function closeLoginModal() {
+    $loginModal.hide();
+  }
+
+  /** 로그인 처리를 담당하는 함수 */
+  function handleLogin(event) {
+    event.preventDefault(); // 폼 제출 시 페이지 새로고침 방지
+
+    const id = $("#login-id").val();
+    const pw = $("#login-pw").val();
+
+    if (!id || !pw) {
+      alert("아이디와 비밀번호를 모두 입력해주세요.");
+      return;
+    }
+
+    // localStorage에서 사용자 정보 가져오기
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    // 입력된 아이디와 비밀번호가 일치하는 사용자 찾기
+    const foundUser = users.find((user) => user.id === id && user.pw === pw);
+
+    if (foundUser) {
+      // 로그인 성공
+      alert(`${foundUser.name}님, 환영합니다!`);
+      // 로그인 상태를 세션 스토리지에 저장 (브라우저를 닫으면 사라짐)
+      sessionStorage.setItem("currentUser", JSON.stringify(foundUser));
+      updateHeaderUI(foundUser); // 헤더 UI 업데이트
+      closeLoginModal(); // 모달 닫기
+    } else {
+      // 로그인 실패
+      alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+    }
+  }
+
+  /** 로그아웃 처리를 담당하는 함수 */
+  function handleLogout() {
+    const isLogout = confirm("정말 로그아웃 하시겠습니까?");
+    if (isLogout) {
+      sessionStorage.removeItem("currentUser"); // 세션 스토리지에서 사용자 정보 삭제
+      updateHeaderUI(null); // 헤더 UI를 로그아웃 상태로 변경
+      alert("로그아웃 되었습니다.");
+    }
+  }
+
+  // --- 이벤트 리스너 연결 ---
+  $loginBtn.on("click", openLoginModal);
+  $closeModalBtn.on("click", closeLoginModal);
+  $loginForm.on("submit", handleLogin);
+
+  // 모달 외부(검은 배경) 클릭 시 닫기
+  $loginModal.on("click", function (e) {
+    if (e.target === this) {
+      closeLoginModal();
+    }
+  });
+
+  // --- 페이지 로드 시 초기 실행 ---
+  // 페이지가 로드될 때 세션 스토리지에 로그인 정보가 있는지 확인
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  if (currentUser) {
+    updateHeaderUI(currentUser); // 로그인 정보가 있으면 UI 업데이트
+  } else {
+    updateHeaderUI(null); // 없으면 로그아웃 상태 UI
+  }
+});

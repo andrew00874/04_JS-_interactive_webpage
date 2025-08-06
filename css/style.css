@@ -359,6 +359,8 @@ header {
   border: none;
   font-size: 24px;
   cursor: pointer;
+  position: relative; /* z-index를 적용하기 위해 추가 */
+  z-index: 1001; /* 메뉴(1000)보다 높은 값으로 설정 */
 }
 
 @media (max-width: 768px) {
