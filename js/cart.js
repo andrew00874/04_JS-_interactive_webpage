@@ -1,5 +1,25 @@
 // js/cart.js
 
+$(function () {
+  // 다크모드 기능 (기존과 동일)
+  function applyTheme() {
+    if (localStorage.getItem("darkMode") === "enabled") {
+      $("body").addClass("dark-mode");
+    } else {
+      $("body").removeClass("dark-mode");
+    }
+  }
+  applyTheme();
+  $("#darkmode").click(() => {
+    $("body").toggleClass("dark-mode");
+    if ($("body").hasClass("dark-mode")) {
+      localStorage.setItem("darkMode", "enabled");
+    } else {
+      localStorage.removeItem("darkMode");
+    }
+  });
+});
+
 $(document).ready(function () {
   // 1. 로그인 상태 확인 및 UI 업데이트
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
