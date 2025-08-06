@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>글쓰기 - 무진장 쇼핑몰</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/write.css" />
+    <link rel="icon" type="image/png" href="./images/icon.png" />
+  </head>
+
+  <body>
+    <div class="write-container">
+      <div class="write-wrapper">
+        <h2 class="write-title">게시글 작성</h2>
+        <form action="#" id="writeForm">
+          <div class="form-group">
+            <label for="postTitle">제목</label>
+            <input
+              type="text"
+              class="write-input"
+              id="postTitle"
+              name="title"
+              placeholder="제목을 입력하세요"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="postImage">이미지 첨부 (선택)</label>
+            <input type="file" id="postImage" accept="image/*" />
+            <div class="image-preview" id="imagePreview"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="postContent">내용</label>
+            <textarea
+              class="write-textarea"
+              id="postContent"
+              name="content"
+              rows="15"
+              placeholder="내용을 입력하세요"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-buttons">
+            <button type="submit" id="submitBtn" class="submit-btn">
+              등록하기
+            </button>
+            <a href="board.html" class="cancel-btn">취소</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="./js/write.js"></script>
+  </body>
+</html>

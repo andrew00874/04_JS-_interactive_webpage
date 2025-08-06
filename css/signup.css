@@ -176,7 +176,6 @@ body.dark-mode .input-result {
   transform: scale(0.98);
 }
 
-
 /* 반응형 디자인 */
 @media (max-width: 540px) {
   .signup-wrapper {
@@ -186,4 +185,40 @@ body.dark-mode .input-result {
   .signup-title {
     font-size: 24px;
   }
+}
+
+
+/* --- 아이디 중복 확인 버튼 관련 스타일 --- */
+.input-with-button {
+  display: flex;
+  gap: 10px;
+}
+
+.input-with-button .signup-input {
+  flex-grow: 1; /* 남은 공간을 모두 차지 */
+}
+
+.check-btn {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  flex-shrink: 0; /* 버튼 너비가 줄어들지 않도록 */
+  transition: background-color 0.2s;
+}
+
+.check-btn:hover {
+  background-color: #e9ecef;
+}
+
+body.dark-mode .check-btn {
+  background-color: #495057;
+  border-color: #555;
+  color: #ecf0f1;
+}
+body.dark-mode .check-btn:hover {
+  background-color: #6c757d;
 }

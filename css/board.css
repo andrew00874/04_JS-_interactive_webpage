@@ -1,0 +1,187 @@
+/* /css/board.css */
+
+/* --- 메인 컨테이너 --- */
+.board-container {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 20px 40px;
+}
+
+.board-container h2 {
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* --- 게시판 테이블 --- */
+.board-table {
+  width: 100%;
+  border-collapse: collapse; /* 테이블 선을 한 줄로 합침 */
+  font-size: 15px;
+}
+
+.board-table th,
+.board-table td {
+  padding: 15px 10px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+/* 다크모드 테이블 선 색상 */
+body.dark-mode .board-table th,
+body.dark-mode .board-table td {
+  border-bottom-color: #44586d;
+}
+
+/* 테이블 헤더 */
+.board-table thead {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  border-top: 2px solid #333;
+  border-bottom: 1px solid #ddd;
+}
+
+body.dark-mode .board-table thead {
+  background-color: #3a5067;
+  border-top-color: #ecf0f1;
+  border-bottom-color: #5d738a;
+}
+
+/* 테이블 각 컬럼 너비 지정 */
+.col-no {
+  width: 8%;
+}
+.col-title {
+  width: 52%;
+  text-align: left;
+  padding-left: 20px;
+}
+.col-author {
+  width: 15%;
+}
+.col-date {
+  width: 15%;
+}
+.col-views {
+  width: 10%;
+}
+
+/* 게시글 제목 (좌측 정렬) */
+.board-table tbody td:nth-child(2) {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.board-table tbody tr:hover {
+  background-color: #f8f9fa;
+  transition: background-color 0.2s;
+}
+
+body.dark-mode .board-table tbody tr:hover {
+  background-color: #34495e;
+}
+
+.board-table a {
+  transition: color 0.2s;
+}
+.board-table a:hover {
+  text-decoration: underline;
+  color: #007bff;
+}
+body.dark-mode .board-table a:hover {
+  color: #82c0ff;
+}
+
+/* --- 게시판 하단 (페이지네이션, 글쓰기 버튼) --- */
+.board-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+
+/* 글쓰기 버튼 (signup.css의 .signup-btn 참고) */
+.write-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.write-btn:hover {
+  background-color: #0056b3;
+}
+
+body.dark-mode .write-btn {
+  background-color: #3498db;
+  color: #ecf0f1;
+}
+
+body.dark-mode .write-btn:hover {
+  background-color: #2980b9;
+}
+
+.post-detail-content img {
+  max-width: 100%; /* 부모 요소 너비에 맞춰 이미지 크기 자동 조절 */
+  height: auto; /* 이미지 비율 유지 (너비에 맞춰 높이 자동 설정) */
+  margin-top: 10px;
+  border-radius: 8px;
+  display: block; /* 이미지 주변의 불필요한 공간 제거 (선택 사항) */
+  margin-left: auto; /* 이미지를 가운데 정렬하고 싶다면 (선택 사항) */
+  margin-right: auto; /* 이미지를 가운데 정렬하고 싶다면 (선택 사항) */
+}
+
+
+/* --- 반응형 디자인 --- */
+@media (max-width: 768px) {
+  .board-container {
+    padding: 20px 15px;
+  }
+
+  .board-table {
+    font-size: 14px;
+  }
+
+  .board-table th,
+  .board-table td {
+    padding: 12px 5px;
+  }
+
+  /* 화면이 좁을 때 조회수 컬럼 숨기기 */
+  .col-views {
+    display: none;
+  }
+
+  .col-title {
+    width: 50%;
+  }
+  .col-author {
+    width: 20%;
+  }
+  .col-date {
+    width: 22%;
+  }
+}
+
+@media (max-width: 480px) {
+  .board-container h2 {
+    font-size: 22px;
+  }
+
+  /* 더 작은 화면에서 작성자, 작성일 컬럼 숨기기 */
+  .col-author,
+  .col-date {
+    display: none;
+  }
+
+  .col-title {
+    width: auto;
+  }
+}
