@@ -100,7 +100,55 @@ body.dark-mode .board-table a:hover {
   align-items: center;
   margin-top: 30px;
 }
+/* /css/board.css 파일 맨 아래에 추가 */
 
+/* --- 페이지네이션 스타일 --- */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-btn {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.page-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* 현재 활성화된 페이지 버튼 */
+.page-btn.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+  cursor: default;
+}
+
+/* 다크모드 페이지네이션 */
+body.dark-mode .page-btn {
+  background-color: #3a5067;
+  border-color: #5d738a;
+  color: #ecf0f1;
+}
+
+body.dark-mode .page-btn:hover {
+  background-color: #4b647f;
+}
+
+body.dark-mode .page-btn.active {
+  background-color: #3498db;
+  border-color: #3498db;
+}
 /* 글쓰기 버튼 (signup.css의 .signup-btn 참고) */
 .write-btn {
   display: inline-block;
@@ -137,7 +185,6 @@ body.dark-mode .write-btn:hover {
   margin-left: auto; /* 이미지를 가운데 정렬하고 싶다면 (선택 사항) */
   margin-right: auto; /* 이미지를 가운데 정렬하고 싶다면 (선택 사항) */
 }
-
 
 /* --- 반응형 디자인 --- */
 @media (max-width: 768px) {

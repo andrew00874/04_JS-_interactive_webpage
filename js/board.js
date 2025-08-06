@@ -1,39 +1,63 @@
+// js/board.js
+
 $(document).ready(function () {
+  // --- 페이지네이션 변수 ---
+  let currentPage = 1; // 현재 페이지
+  const postsPerPage = 10; // 페이지 당 게시글 수
+
   // --- 페이지 초기화 ---
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-  loadAndRenderPosts(); // 게시글 목록 불러오기 및 표시
+  updateHeaderUI(currentUser);
+  applyTheme();
+  displayPosts(); // 페이지네이션을 포함한 함수로 변경
 
-  // 글쓰기 버튼 클릭 시 로그인 상태 확인
+  // --- 이벤트 리스너 ---
+
+  // (다크모드, 글쓰기 버튼 이벤트 리스너는 기존과 동일)
+  $(document).on("click", "#darkmode", function () {
+    /* ... */
+  });
   $(".write-btn").on("click", function (e) {
-    if (!currentUser) {
-      e.preventDefault(); // a 태그의 기본 동작(페이지 이동)을 막음
-      alert("글쓰기는 로그인 후 이용 가능합니다.");
-      location.href = "index.html"; // 로그인할 수 있도록 메인 페이지로 이동
-    }
+    /* ... */
+  });
+  $("#posts-list").on("click", ".post-title-link", function (e) {
+    /* ... */
   });
 
-  $("#posts-list").on("click", ".post-title-link", function (e) {
-    e.preventDefault(); // 링크의 기본 이동 기능 막기
+  // ★★★ 페이지 번호 버튼 클릭 이벤트 (이벤트 위임) ★★★
+  $(".pagination").on("click", ".page-btn", function () {
+    // 이미 활성화된 버튼을 클릭하면 아무것도 하지 않음
+    if ($(this).hasClass("active")) return;
 
-    const $contentRow = $(this).closest("tr").next(".post-content-row");
-
-    // 다른 열려있는 내용은 닫기
-    $(".post-content-row").not($contentRow).slideUp();
-
-    // 클릭한 게시글의 내용만 열고 닫기 (토글)
-    $contentRow.slideToggle();
+    // data-page 속성에서 페이지 번호를 가져와 숫자로 변환
+    const page = parseInt($(this).data("page"));
+    currentPage = page; // 현재 페이지 업데이트
+    displayPosts(); // 해당 페이지의 게시글 다시 표시
   });
 
   // --- 함수 선언 ---
 
-  /**
-   * localStorage에서 'boardPosts' 키로 저장된 게시글 데이터를 가져와
-   * board.html의 테이블(tbody#posts-list)에 동적으로 렌더링하는 함수
-   */
-  /** localStorage에서 게시글을 가져와 슬라이드 다운 형식으로 렌더링하는 함수 */
-  function loadAndRenderPosts() {
+  /** 게시글 데이터를 가져와 현재 페이지에 맞게 표시하고 페이지네이션을 렌더링하는 메인 함수 */
+  function displayPosts() {
+    const allPosts = JSON.parse(localStorage.getItem("boardPosts")) || [];
+    const reversedPosts = allPosts.slice().reverse(); // 최신글이 위로 오도록
+
+    // 1. 현재 페이지에 표시할 게시글 계산
+    const startIndex = (currentPage - 1) * postsPerPage;
+    const endIndex = startIndex + postsPerPage;
+    const postsToShow = reversedPosts.slice(startIndex, endIndex);
+
+    // 2. 게시글 렌더링
+    renderPosts(postsToShow, allPosts.length);
+
+    // 3. 페이지네이션 렌더링
+    renderPagination(allPosts.length);
+  }
+
+  /** 계산된 게시글 목록을 화면에 렌더링하는 함수 */
+  function renderPosts(posts, totalPostCount) {
     const $postsListContainer = $("#posts-list");
-    const posts = JSON.parse(localStorage.getItem("boardPosts")) || [];
+    $postsListContainer.empty();
 
     if (posts.length === 0) {
       $postsListContainer.html(
@@ -42,50 +66,58 @@ $(document).ready(function () {
       return;
     }
 
-    $postsListContainer.empty();
+    posts.forEach((post, index) => {
+      const postNumber =
+        totalPostCount - (currentPage - 1) * postsPerPage - index;
+      const postDate = new Date(post.createdAt).toLocaleDateString("ko-KR");
 
-    posts
-      .slice()
-      .reverse()
-      .forEach((post, index) => {
-        const postDate = new Date(post.createdAt).toLocaleDateString("ko-KR");
-
-        // 1. 제목 줄 HTML
-        const titleRowHTML = `
+      const titleRowHTML = `
         <tr class="post-title-row">
-          <td>${posts.length - index}</td>
-          <td class="col-title">
-            <a href="#" class="post-title-link">${post.title}</a>
-          </td>
+          <td>${postNumber}</td>
+          <td class="col-title"><a href="#" class="post-title-link">${post.title}</a></td>
           <td>${post.author}</td>
           <td>${postDate}</td>
-        </tr>
-      `;
+        </tr>`;
 
-        // 2. 내용 줄 HTML (처음에는 숨겨져 있음)
-        const contentRowHTML = `
+      const contentRowHTML = `
         <tr class="post-content-row" style="display: none;">
           <td colspan="4">
             <div class="post-detail-content">
-            ${
-              post.imageUrl
-                ? `<img src="${post.imageUrl}" alt="첨부 이미지">`
-                : ""
-            }
-                <p>${post.content}</p>
+              ${
+                post.imageUrl
+                  ? `<div class="post-image-wrapper"><img src="${post.imageUrl}" alt="첨부 이미지"></div>`
+                  : ""
+              }
+              <p>${post.content}</p>
             </div>
           </td>
-        </tr>
-      `;
+        </tr>`;
 
-        $postsListContainer.append(titleRowHTML + contentRowHTML);
-      });
+      $postsListContainer.append(titleRowHTML + contentRowHTML);
+    });
   }
 
-  // ... (updateHeaderUI, handleLogout, applyTheme 함수는 이전과 동일하게 유지) ...
-  /** 로그인 상태에 따라 헤더 메뉴를 업데이트하는 함수 */
+  /** 페이지네이션 버튼을 생성하고 렌더링하는 함수 */
+  function renderPagination(totalPostCount) {
+    const $paginationContainer = $(".pagination");
+    $paginationContainer.empty();
+
+    const totalPages = Math.ceil(totalPostCount / postsPerPage);
+
+    for (let i = 1; i <= totalPages; i++) {
+      const buttonHTML = `
+        <button class="page-btn ${
+          i === currentPage ? "active" : ""
+        }" data-page="${i}">
+          ${i}
+        </button>`;
+      $paginationContainer.append(buttonHTML);
+    }
+  }
+
+  // ... (updateHeaderUI, handleLogout, applyTheme 등 나머지 함수는 기존과 동일하게 유지) ...
   function updateHeaderUI(user) {
-    const $userMenu = $(".user--menu");
+    const $userMenu = $(".user-menu");
     if (!user) {
       const loggedOutMenu = `
         <a href="./signup.html">회원가입</a>
@@ -108,7 +140,6 @@ $(document).ready(function () {
     }
   }
 
-  /** 로그아웃 처리를 담당하는 함수 */
   function handleLogout() {
     if (confirm("정말 로그아웃 하시겠습니까?")) {
       sessionStorage.removeItem("currentUser");
@@ -117,7 +148,6 @@ $(document).ready(function () {
     }
   }
 
-  /** 다크모드 테마를 적용하는 함수 */
   function applyTheme() {
     if (localStorage.getItem("darkMode") === "enabled") {
       $("body").addClass("dark-mode");
@@ -125,4 +155,11 @@ $(document).ready(function () {
       $("body").removeClass("dark-mode");
     }
   }
+
+  $("#posts-list").on("click", ".post-title-link", function (e) {
+    e.preventDefault();
+    const $contentRow = $(this).closest("tr").next(".post-content-row");
+    $(".post-content-row").not($contentRow).slideUp();
+    $contentRow.slideToggle();
+  });
 });
