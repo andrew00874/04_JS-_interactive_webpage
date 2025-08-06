@@ -223,38 +223,34 @@ $(document).ready(function () {
   const $loginForm = $("#loginForm");
   const $userMenu = $(".user-menu");
 
-  // --- 함수 선언 ---
-
   /** 로그인 상태에 따라 헤더 메뉴를 업데이트하는 함수 */
   function updateHeaderUI(user) {
     // 로그아웃 상태일 때
     if (!user) {
       const loggedOutMenu = `
-        <div class="search-box">
-          <input type="text" id="search" placeholder="검색어 입력" />
-          <i class="fa-solid fa-magnifying-glass" id="glass"></i>
-        </div>
-        <a href="./signup.html">회원가입</a>
-        <a id="login">로그인</a>
-        <a href="/cart">장바구니</a>
-      `;
+      <div class="search-box">
+        <input type="text" id="search" placeholder="검색어 입력" />
+        <i class="fa-solid fa-magnifying-glass" id="glass"></i>
+      </div>
+      <a href="./signup.html">회원가입</a>
+      <a id="login">로그인</a>
+      <a href="./cart.html">장바구니</a>
+    `;
       $userMenu.html(loggedOutMenu);
-      // 로그인 버튼에 다시 클릭 이벤트를 연결해야 함
       $("#login").on("click", openLoginModal);
     }
     // 로그인 상태일 때
     else {
       const loggedInMenu = `
-        <div class="search-box">
-          <input type="text" id="search" placeholder="검색어 입력" />
-          <i class="fa-solid fa-magnifying-glass" id="glass"></i>
-        </div>
-        <span class="welcome-msg">${user.name}님 환영합니다!</span>
-        <a id="logout">로그아웃</a>
-        <a href="/cart">장바구니</a>
-      `;
+      <div class="search-box">
+        <input type="text" id="search" placeholder="검색어 입력" />
+        <i class="fa-solid fa-magnifying-glass" id="glass"></i>
+      </div>
+      <span class="welcome-msg" style="font-weight:bold;">${user.name}님 환영합니다!</span>
+      <a id="logout">로그아웃</a>
+      <a href="./cart.html">장바구니</a>
+    `;
       $userMenu.html(loggedInMenu);
-      // 로그아웃 버튼에 클릭 이벤트 연결
       $("#logout").on("click", handleLogout);
     }
   }

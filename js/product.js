@@ -49,15 +49,20 @@ document.addEventListener("DOMContentLoaded", () => {
         // 기본 상품 정보 표시
         document.title = `${product.name} - 무진장 쇼핑몰`;
         document.querySelector(".product-name").textContent = product.name;
-        document.querySelector(".product-price").textContent = `${product.price.toLocaleString("ko-KR")}원`;
+        document.querySelector(
+          ".product-price"
+        ).textContent = `${product.price.toLocaleString("ko-KR")}원`;
         document.querySelector(".product-image img").src = product.image;
         document.querySelector(".product-image img").alt = product.name;
 
         // 상세 정보 표시
         const detailsContent = document.querySelector("#details");
         detailsContent.querySelector("p").textContent = product.description;
-        detailsContent.querySelector(".product-detail-image img").src = product.detail_img;
-        detailsContent.querySelector(".product-detail-image img").alt = `${product.name} 상세 정보`;
+        detailsContent.querySelector(".product-detail-image img").src =
+          product.detail_img;
+        detailsContent.querySelector(
+          ".product-detail-image img"
+        ).alt = `${product.name} 상세 정보`;
 
         // ⭐️ 1. 총가격을 업데이트하는 함수 정의
         // product.price를 사용해야 하므로 이 위치에 함수를 만듭니다.
@@ -104,10 +109,70 @@ document.addEventListener("DOMContentLoaded", () => {
           // 3. 현재 입력된 유효한 수량을 기준으로 총가격을 업데이트합니다.
           updateTotalPrice();
         });
-
         // ⭐️ 3. 페이지 로드 시 초기 총가격을 계산하여 표시
         updateTotalPrice();
 
+        $(".btn-cart").on("click", function () {
+          // 1. 로그인 상태 확인
+          const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+          if (!currentUser) {
+            alert("장바구니 기능은 로그인 후 이용 가능합니다.");
+            // 선택: 로그인 페이지로 보내거나, 메인 페이지의 로그인 모달을 열도록 유도
+            location.href = "index.html";
+            return;
+          }
+
+          // 2. 옵션 선택 확인
+          const selectedColor = $("#color-select").val();
+          const selectedSize = $("#size-select").val();
+
+          if (!selectedColor || !selectedSize) {
+            alert("색상과 사이즈를 모두 선택해주세요.");
+            return;
+          }
+
+          const selectedQuantity = parseInt($("#quantity").val());
+          const cartKey = `cart_${currentUser.id}`; // 사용자별 고유 장바구니 키
+
+          // 3. localStorage에서 현재 사용자의 장바구니 정보 가져오기
+          let userCart = JSON.parse(localStorage.getItem(cartKey)) || [];
+
+          // 4. 동일한 상품, 동일한 옵션이 이미 장바구니에 있는지 확인
+          const existingItemIndex = userCart.findIndex(
+            (item) =>
+              item.id === product.id &&
+              item.color === selectedColor &&
+              item.size === selectedSize
+          );
+
+          if (existingItemIndex > -1) {
+            // 이미 있다면: 수량만 추가
+            userCart[existingItemIndex].quantity += selectedQuantity;
+          } else {
+            // 없다면: 새로운 상품으로 추가
+            const cartItem = {
+              id: product.id,
+              name: product.name,
+              price: product.price,
+              image: product.image,
+              color: selectedColor,
+              size: selectedSize,
+              quantity: selectedQuantity,
+            };
+            userCart.push(cartItem);
+          }
+
+          // 5. 업데이트된 장바구니 정보를 localStorage에 다시 저장
+          localStorage.setItem(cartKey, JSON.stringify(userCart));
+
+          // 6. 확인 창 띄우기
+          const userChoice = confirm(
+            "상품이 장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?"
+          );
+          if (userChoice) {
+            location.href = "cart.html";
+          }
+        });
       } else {
         displayError("상품을 찾을 수 없습니다.");
       }
@@ -133,27 +198,77 @@ function displayError(message) {
   // 상세 정보 탭 영역도 숨깁니다.
   const extraInfoDiv = document.querySelector(".product-extra-info");
   if (extraInfoDiv) {
-    extraInfoDiv.style.display = 'none';
+    extraInfoDiv.style.display = "none";
   }
-};
+}
 
+// 모든 탭 링크와 탭 콘텐츠를 가져옵니다.
+const tabLinks = document.querySelectorAll(".tab-link");
+const tabContents = document.querySelectorAll(".tab-content");
 
-    // 모든 탭 링크와 탭 콘텐츠를 가져옵니다.
-const tabLinks = document.querySelectorAll('.tab-link');
-const tabContents = document.querySelectorAll('.tab-content');
-
-    // 각 탭 링크에 클릭 이벤트를 추가합니다.
-tabLinks.forEach(link => {
-  link.addEventListener('click', () => {
+// 각 탭 링크에 클릭 이벤트를 추가합니다.
+tabLinks.forEach((link) => {
+  link.addEventListener("click", () => {
     // 클릭된 탭의 data-tab 속성 값을 가져옵니다 (예: "details").
-    const tabId = link.getAttribute('data-tab');
+    const tabId = link.getAttribute("data-tab");
 
     // 1. 모든 탭 링크와 콘텐츠에서 'active' 클래스를 제거합니다.
-    tabLinks.forEach(item => item.classList.remove('active'));
-    tabContents.forEach(item => item.classList.remove('active'));
+    tabLinks.forEach((item) => item.classList.remove("active"));
+    tabContents.forEach((item) => item.classList.remove("active"));
 
     // 2. 클릭된 탭 링크와 해당하는 콘텐츠에만 'active' 클래스를 추가합니다.
-    link.classList.add('active');
-    document.getElementById(tabId).classList.add('active');
+    link.classList.add("active");
+    document.getElementById(tabId).classList.add("active");
   });
+});
+// ========================================================
+$(document).ready(function () {
+  // --- 변수 선언 (product.html에 맞게 일부만 사용) ---
+  const $userMenu = $("header div").last(); // product.html의 헤더 구조에 맞게 선택
+
+  // --- 함수 선언 ---
+
+  /** 로그인 상태에 따라 헤더 메뉴를 업데이트하는 함수 */
+  function updateHeaderUI(user) {
+    // 로그아웃 상태일 때
+    if (!user) {
+      const loggedOutMenu = `
+        <a href="./signup.html">회원가입</a>
+        <a id="login">로그인</a>
+        <a href="./cart.html">장바구니</a>
+      `;
+      $userMenu.html(loggedOutMenu);
+      // product.html에는 로그인 모달이 없으므로, 로그인 클릭 시 메인으로 보내는 것을 고려해볼 수 있습니다.
+      $("#login").on("click", () => {
+        alert("로그인은 메인 페이지에서 가능합니다.");
+        location.href = "index.html";
+      });
+    }
+    // 로그인 상태일 때
+    else {
+      const loggedInMenu = `
+        <span class="welcome-msg" style="font-weight:bold;">${user.name}님 환영합니다!</span>
+        <a id="logout">로그아웃</a>
+        <a href="./cart.html">장바구니</a>
+      `;
+      $userMenu.html(loggedInMenu);
+      // 로그아웃 버튼에 클릭 이벤트 연결
+      $("#logout").on("click", handleLogout);
+    }
+  }
+
+  /** 로그아웃 처리를 담당하는 함수 */
+  function handleLogout() {
+    const isLogout = confirm("정말 로그아웃 하시겠습니까?");
+    if (isLogout) {
+      sessionStorage.removeItem("currentUser"); // 세션 스토리지에서 사용자 정보 삭제
+      updateHeaderUI(null); // 헤더 UI를 로그아웃 상태로 변경
+      alert("로그아웃 되었습니다.");
+    }
+  }
+
+  // --- 페이지 로드 시 초기 실행 ---
+  // 페이지가 로드될 때 세션 스토리지에 로그인 정보가 있는지 확인
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  updateHeaderUI(currentUser); // 세션 정보에 따라 UI 업데이트
 });

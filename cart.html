@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>장바구니 - 무진장 쇼핑몰</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/cart.css" />
+    <link rel="icon" type="image/png" href="./images/icon.png" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <h1><a href="./index.html">무진장</a></h1>
+      </div>
+      <div class="header-right-group">
+        <nav>
+          <ul>
+            <li><a href="./index.html#nav-new">신상품</a></li>
+            <li><a href="./index.html#nav-best">베스트</a></li>
+          </ul>
+        </nav>
+        <div class="user-menu"></div>
+      </div>
+      <button class="nav-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </header>
+
+    <main class="cart-container">
+      <h2>🛒 장바구니</h2>
+      <div id="cart-items-container"></div>
+      <div class="cart-summary">
+        <div class="total-price-text">총 주문금액</div>
+        <div class="total-price-value" id="cart-total-price">0원</div>
+      </div>
+      <div class="cart-actions">
+        <button class="order-button">주문하기</button>
+        <a href="./index.html" class="continue-shopping-button"
+          >쇼핑 계속하기</a
+        >
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2025 무진장. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/8d9a455979.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/cart.js"></script>
+  </body>
+</html>
