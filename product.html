@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>상품명 - 무진장 쇼핑몰</title>
-    <link rel="stylesheet" href="./css/product.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
     <link rel="icon" type="image/png" href="./images/icon.png" />
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -19,24 +19,33 @@
         <a href="./index.html">무진장</a>
         <i class="fa-solid fa-moon" id="darkmode"></i>
       </h1>
-      <nav>
-        <ul>
-          <li><a href="/new">신상품</a></li>
-          <li><a href="/best">베스트</a></li>
-          <li><a href="/outer">아우터</a></li>
-          <li><a href="/top">상의</a></li>
-          <li><a href="/bottom">하의</a></li>
-          <li><a href="./board.html">게시판</a></li>
-        </ul>
-      </nav>
-      <div>
-        <a href="./signup.html">회원가입</a>
-        <a id="login">로그인</a>
-        <a href="/cart">장바구니</a>
+      <div class="header-right-group">
+        <nav>
+          <ul>
+            <li><a href="./index.html#nav-new">신상품</a></li>
+            <li><a href="./index.html#nav-best">베스트</a></li>
+            <li><a href="./index.html#nav-outer">아우터</a></li>
+            <li><a href="./index.html#nav-top">상의</a></li>
+            <li><a href="./index.html#nav-bottom">하의</a></li>
+            <li><a href="./board.html">게시판</a></li>
+          </ul>
+        </nav>
+        <div class="user-menu">
+          <div class="search-box">
+            <input type="text" id="search" placeholder="검색어 입력" />
+            <i class="fa-solid fa-magnifying-glass" id="glass"></i>
+          </div>
+          <a href="./signup.html">회원가입</a>
+          <a id="login">로그인</a>
+          <a href="./cart.html">장바구니</a>
+        </div>
       </div>
-    </header>
 
-    <main class="product-detail-page">
+      <button class="nav-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </header>
+    <main class="product-container">
       <section class="product-main-info">
         <div class="product-image">
           <img alt="상품 상세 이미지" />

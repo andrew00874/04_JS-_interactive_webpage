@@ -1,4 +1,10 @@
 // js/board.js
+$(function () {
+  // 햄버거 메뉴 토글 기능
+  $(".nav-toggle").click(function () {
+    $(".header-right-group").toggleClass("is-active");
+  });
+});
 
 $(document).ready(function () {
   // --- 페이지네이션 변수 ---

@@ -4,18 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>게시판 - 무진장 쇼핑몰</title>
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/board.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
     <link rel="icon" type="image/png" href="./images/icon.png" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   </head>
   <body>
     <header>
-      <div class="header-left">
-        <h1><a href="./index.html">무진장</a></h1>
+      <h1>
+        <a href="./index.html">무진장</a>
         <i class="fa-solid fa-moon" id="darkmode"></i>
-      </div>
-
+      </h1>
       <div class="header-right-group">
         <nav>
           <ul>
@@ -28,15 +26,22 @@
           </ul>
         </nav>
         <div class="user-menu">
+          <div class="search-box">
+            <input type="text" id="search" placeholder="검색어 입력" />
+            <i class="fa-solid fa-magnifying-glass" id="glass"></i>
+          </div>
           <a href="./signup.html">회원가입</a>
           <a id="login">로그인</a>
           <a href="./cart.html">장바구니</a>
         </div>
       </div>
+
       <button class="nav-toggle">
         <i class="fas fa-bars"></i>
       </button>
     </header>
+
+    
 
     <main class="board-container">
       <h2>자유 게시판</h2>
@@ -80,6 +85,5 @@
       crossorigin="anonymous"
     ></script>
     <script src="./js/board.js"></script>
-    <script src="./js/product.js"></script>
   </body>
 </html>

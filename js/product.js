@@ -25,6 +25,12 @@ $(function () {
   });
 });
 
+$(function () {
+  // 햄버거 메뉴 토글 기능
+  $(".nav-toggle").click(function () {
+    $(".header-right-group").toggleClass("is-active");
+  });
+});
 document.addEventListener("DOMContentLoaded", () => {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);

@@ -1,102 +1,113 @@
 <!DOCTYPE html>
 <html lang="ko">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>무진장 쇼핑몰</title>
-  <meta name="description" content="최신 트렌드의 다양한 의류를 만나보세요." />
-  <link rel="stylesheet" href="./css/style.css" />
-  <link rel="icon" type="image/png" href="./images/icon.png" />
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-</head>
-
-<body>
-<header>
-  <div class="header-left">
-    <h1><a href="./index.html">무진장</a></h1>
-    <i class="fa-solid fa-moon" id="darkmode"></i>
-  </div>
-
-  <div class="header-right-group">
-    <nav>
-      <ul>
-        <li><a href="#" id="nav-new">신상품</a></li>
-        <li><a href="#" id="nav-best">베스트</a></li>
-        <li><a href="#" id="nav-outer">아우터</a></li>
-        <li><a href="#" id="nav-top">상의</a></li>
-        <li><a href="#" id="nav-bottom">하의</a></li>
-        <li><a href="./board.html">게시판</a></li>
-      </ul>
-    </nav>
-    <div class="user-menu">
-      <div class="search-box">
-        <input type="text" id="search" placeholder="검색어 입력" />
-        <i class="fa-solid fa-magnifying-glass" id="glass"></i>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>무진장 쇼핑몰</title>
+    <meta
+      name="description"
+      content="최신 트렌드의 다양한 의류를 만나보세요."
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="icon" type="image/png" href="./images/icon.png" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <a href="./index.html">무진장</a>
+        <i class="fa-solid fa-moon" id="darkmode"></i>
+      </h1>
+      <div class="header-right-group">
+        <nav>
+          <ul>
+            <li><a href="#" id="nav-new">신상품</a></li>
+            <li><a href="#" id="nav-best">베스트</a></li>
+            <li><a href="#" id="nav-outer">아우터</a></li>
+            <li><a href="#" id="nav-top">상의</a></li>
+            <li><a href="#" id="nav-bottom">하의</a></li>
+            <li><a href="./board.html">게시판</a></li>
+          </ul>
+        </nav>
+        <div class="user-menu">
+          <div class="search-box">
+            <input type="text" id="search" placeholder="검색어 입력" />
+            <i class="fa-solid fa-magnifying-glass" id="glass"></i>
+          </div>
+          <a href="./signup.html">회원가입</a>
+          <a id="login">로그인</a>
+          <a href="./cart.html">장바구니</a>
+        </div>
       </div>
-      <a href="./signup.html">회원가입</a>
-      <a id="login">로그인</a>
-      <a href="./cart.html">장바구니</a>
-    </div>
-  </div>
 
-  <button class="nav-toggle">
-    <i class="fas fa-bars"></i>
-  </button>
-</header>
+      <button class="nav-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </header>
 
-  </header>
     <div class="modal-overlay" id="loginModal">
       <div class="modal-content">
         <button class="close-btn" id="closeModal">×</button>
         <div class="modal-title">🔐 로그인</div>
-    
+
         <form id="loginForm">
           <div class="form-group">
             <label>아이디</label>
-            <input type="text" id="login-id" placeholder="아이디를 입력하세요" />
+            <input
+              type="text"
+              id="login-id"
+              placeholder="아이디를 입력하세요"
+            />
           </div>
-    
+
           <div class="form-group">
             <label>비밀번호</label>
-            <input type="password" id= "login-pw" placeholder="비밀번호를 입력하세요" />
+            <input
+              type="password"
+              id="login-pw"
+              placeholder="비밀번호를 입력하세요"
+            />
           </div>
-    
+
           <button type="submit" class="login-btn">로그인</button>
         </form>
       </div>
     </div>
-  <main>
-    <section class="main-banner">
-      <h2>시즌오프 세일!</h2>
-      <p>전 상품 최대 50% 할인</p>
-    </section>
 
-    <section class="product-list">
-      <h2>추천 상품</h2>
-      <div class="products">
-        <article class="product-item">
-        </article>
-        <article class="product-item">
-        </article>
+    <main>
+      <section class="main-banner">
+        <h2>시즌오프 세일!</h2>
+        <p>전 상품 최대 50% 할인</p>
+      </section>
+
+      <section class="product-list">
+        <h2>추천 상품</h2>
+        <div class="products">
+          <article class="product-item"></article>
+          <article class="product-item"></article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2025 무진장. All rights reserved.</p>
+        <ul>
+          <li><a href="./about.html">회사소개</a></li>
+          <li><a href="./terms.html">이용약관</a></li>
+          <li><a href="./policy.html">개인정보처리방침</a></li>
+        </ul>
       </div>
-    </section>
-  </main>
+    </footer>
 
-  <footer>
-    <div class="footer-content">
-      <p>&copy; 2025 무진장. All rights reserved.</p>
-      <ul>
-        <li><a href="./about.html">회사소개</a></li>
-        <li><a href="./terms.html">이용약관</a></li>
-        <li><a href="./policy.html">개인정보처리방침</a></li>
-      </ul>
-    </div>
-  </footer>
-
-  <script src="https://kit.fontawesome.com/8d9a455979.js" crossorigin="anonymous"></script>
-  <script src="./js/main.js"></script>
-</body>
-
+    <script
+      src="https://kit.fontawesome.com/8d9a455979.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/main.js"></script>
+  </body>
 </html>
