@@ -127,7 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       // ★★★ 중복 검사 로직 끝 ★★★
 
-      
       // 2. 새로 가입하는 사용자 정보를 객체로 만듭니다.
       const newUser = {
         id: inputId.value,
@@ -146,8 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       alert("회원가입이 완료되었습니다!");
 
-      // 회원가입 완료 후 메인 페이지로 이동
-      location.href = "index.html";
+      location.href = "../index.html";
     });
   };
 });

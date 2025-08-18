@@ -21,13 +21,31 @@ $(document).ready(function () {
 
   // (다크모드, 글쓰기 버튼 이벤트 리스너는 기존과 동일)
   $(document).on("click", "#darkmode", function () {
-    /* ... */
+    $("body").toggleClass("dark-mode");
+    if ($("body").hasClass("dark-mode")) {
+      localStorage.setItem("darkMode", "enabled");
+    } else {
+      localStorage.removeItem("darkMode");
+    }
   });
+
   $(".write-btn").on("click", function (e) {
-    /* ... */
+    e.preventDefault();
+    // 로그인 상태 확인
+    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    if (!currentUser) {
+      alert("글쓰기는 로그인 후 이용 가능합니다.");
+      location.href = "../index.html"; // 상위 폴더의 index.html로 이동
+      return;
+    }
+    location.href = "./write.html"; // 같은 폴더의 write.html로 이동
   });
+
   $("#posts-list").on("click", ".post-title-link", function (e) {
-    /* ... */
+    e.preventDefault();
+    const $contentRow = $(this).closest("tr").next(".post-content-row");
+    $(".post-content-row").not($contentRow).slideUp();
+    $contentRow.slideToggle();
   });
 
   // ★★★ 페이지 번호 버튼 클릭 이벤트 (이벤트 위임) ★★★
@@ -121,25 +139,24 @@ $(document).ready(function () {
     }
   }
 
-  // ... (updateHeaderUI, handleLogout, applyTheme 등 나머지 함수는 기존과 동일하게 유지) ...
   function updateHeaderUI(user) {
     const $userMenu = $(".user-menu");
     if (!user) {
       const loggedOutMenu = `
-        <a href="./signup.html">회원가입</a>
+        <a href="../html/signup.html">회원가입</a>
         <a id="login">로그인</a>
-        <a href="./cart.html">장바구니</a>
+        <a href="../html/cart.html">장바구니</a>
       `;
       $userMenu.html(loggedOutMenu);
       $("#login").on("click", () => {
         alert("로그인은 메인 페이지에서 가능합니다.");
-        location.href = "index.html";
+        location.href = "../index.html";
       });
     } else {
       const loggedInMenu = `
         <span class="welcome-msg" style="font-weight:bold;">${user.name}님</span>
         <a id="logout">로그아웃</a>
-        <a href="./cart.html">장바구니</a>
+        <a href="../html/cart.html">장바구니</a>
       `;
       $userMenu.html(loggedInMenu);
       $("#logout").on("click", handleLogout);
@@ -161,11 +178,4 @@ $(document).ready(function () {
       $("body").removeClass("dark-mode");
     }
   }
-
-  $("#posts-list").on("click", ".post-title-link", function (e) {
-    e.preventDefault();
-    const $contentRow = $(this).closest("tr").next(".post-content-row");
-    $(".post-content-row").not($contentRow).slideUp();
-    $contentRow.slideToggle();
-  });
 });

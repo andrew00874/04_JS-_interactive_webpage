@@ -31,6 +31,7 @@ $(function () {
     $(".header-right-group").toggleClass("is-active");
   });
 });
+
 document.addEventListener("DOMContentLoaded", () => {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -41,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  fetch("./json/product.json")
+  fetch("../json/product.json")
     .then((res) => {
       if (!res.ok) {
         throw new Error(`데이터 파일을 찾을 수 없습니다. (HTTP ${res.status})`);
@@ -70,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
           ".product-detail-image img"
         ).alt = `${product.name} 상세 정보`;
 
-        // ⭐️ 1. 총가격을 업데이트하는 함수 정의
+        // ⭐️ 1. 총 가격을 업데이트하는 함수 정의
         // product.price를 사용해야 하므로 이 위치에 함수를 만듭니다.
         const updateTotalPrice = () => {
           const quantity = parseInt($("#quantity").val());
@@ -85,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
           var $input = $(this).siblings("input#quantity");
           var currentVal = parseInt($input.val());
           $input.val(currentVal + 1);
-          updateTotalPrice(); // 수량 변경 후 총가격 업데이트
+          updateTotalPrice(); // 수량 변경 후 총 가격 업데이트
         });
 
         // '-' 버튼 클릭 시
@@ -94,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
           var currentVal = parseInt($input.val());
           if (currentVal > 1) {
             $input.val(currentVal - 1);
-            updateTotalPrice(); // 수량 변경 후 총가격 업데이트
+            updateTotalPrice(); // 수량 변경 후 총 가격 업데이트
           }
         });
 
@@ -124,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (!currentUser) {
             alert("장바구니 기능은 로그인 후 이용 가능합니다.");
             // 선택: 로그인 페이지로 보내거나, 메인 페이지의 로그인 모달을 열도록 유도
-            location.href = "index.html";
+            location.href = "../index.html";
             return;
           }
 
@@ -176,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "상품이 장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?"
           );
           if (userChoice) {
-            location.href = "cart.html";
+            location.href = "../html/cart.html";
           }
         });
       } else {
@@ -227,6 +228,7 @@ tabLinks.forEach((link) => {
     document.getElementById(tabId).classList.add("active");
   });
 });
+
 // ========================================================
 $(document).ready(function () {
   // --- 변수 선언 (product.html에 맞게 일부만 사용) ---
@@ -239,15 +241,15 @@ $(document).ready(function () {
     // 로그아웃 상태일 때
     if (!user) {
       const loggedOutMenu = `
-        <a href="./signup.html">회원가입</a>
+        <a href="../html/signup.html">회원가입</a>
         <a id="login">로그인</a>
-        <a href="./cart.html">장바구니</a>
+        <a href="../html/cart.html">장바구니</a>
       `;
       $userMenu.html(loggedOutMenu);
       // product.html에는 로그인 모달이 없으므로, 로그인 클릭 시 메인으로 보내는 것을 고려해볼 수 있습니다.
       $("#login").on("click", () => {
         alert("로그인은 메인 페이지에서 가능합니다.");
-        location.href = "index.html";
+        location.href = "../index.html";
       });
     }
     // 로그인 상태일 때
@@ -255,7 +257,7 @@ $(document).ready(function () {
       const loggedInMenu = `
         <span class="welcome-msg" style="font-weight:bold;">${user.name}님 환영합니다!</span>
         <a id="logout">로그아웃</a>
-        <a href="./cart.html">장바구니</a>
+        <a href="../html/cart.html">장바구니</a>
       `;
       $userMenu.html(loggedInMenu);
       // 로그아웃 버튼에 클릭 이벤트 연결

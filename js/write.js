@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
   // --- 1. Cloudinary 설정 ---
   // 본인의 Cloudinary 대시보드에서 확인한 정보로 반드시 교체해주세요.
@@ -10,7 +9,7 @@ $(document).ready(function () {
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   if (!currentUser) {
     alert("글쓰기는 로그인 후 이용 가능합니다.");
-    location.href = "index.html";
+    location.href = "../index.html";
     return;
   }
 
@@ -21,12 +20,13 @@ $(document).ready(function () {
       const reader = new FileReader();
       reader.onload = function (e) {
         // FileReader API로 이미지 미리보기 생성
-        $("#imagePreview").html(`<img src="${e.target.result}" style="max-width: 200px; border-radius: 8px;">`);
+        $("#imagePreview").html(
+          `<img src="${e.target.result}" style="max-width: 200px; border-radius: 8px;">`
+        );
       };
       reader.readAsDataURL(file); // 파일을 Base64 데이터 URL로 읽기
     }
   });
-
 
   // --- 4. 폼 제출 이벤트 (핵심 로직) ---
   $("#writeForm").on("submit", async function (e) {
@@ -41,30 +41,30 @@ $(document).ready(function () {
     // A. 이미지가 첨부된 경우, Cloudinary에 업로드
     if (imageFile) {
       const formData = new FormData();
-      formData.append('file', imageFile);
-      formData.append('upload_preset', UPLOAD_PRESET);
+      formData.append("file", imageFile);
+      formData.append("upload_preset", UPLOAD_PRESET);
 
       try {
         const response = await fetch(UPLOAD_URL, {
-          method: 'POST',
-          body: formData
+          method: "POST",
+          body: formData,
         });
         const data = await response.json();
         if (data.secure_url) {
           imageUrl = data.secure_url; // 업로드 성공 시 보안 URL 저장
         } else {
-          throw new Error('Cloudinary upload failed.');
+          throw new Error("Cloudinary upload failed.");
         }
       } catch (error) {
-        console.error('이미지 업로드 실패:', error);
-        alert('이미지 업로드 중 오류가 발생했습니다.');
+        console.error("이미지 업로드 실패:", error);
+        alert("이미지 업로드 중 오류가 발생했습니다.");
         $("#submitBtn").text("등록하기").prop("disabled", false); // 버튼 다시 활성화
         return; // 등록 절차 중단
       }
     }
 
     // B. 기존 게시글 데이터를 localStorage에서 가져오기
-    let posts = JSON.parse(localStorage.getItem('boardPosts')) || [];
+    let posts = JSON.parse(localStorage.getItem("boardPosts")) || [];
 
     // C. 새 게시글 객체 만들기 (이미지 URL 포함)
     const newPost = {
@@ -73,14 +73,13 @@ $(document).ready(function () {
       content: content,
       author: currentUser.name,
       createdAt: new Date().toISOString(),
-      imageUrl: imageUrl // 이미지가 없으면 빈 문자열("") 저장
+      imageUrl: imageUrl, // 이미지가 없으면 빈 문자열("") 저장
     };
 
     // D. 새 게시글을 배열에 추가하고 localStorage에 저장
     posts.push(newPost);
-    localStorage.setItem('boardPosts', JSON.stringify(posts));
+    localStorage.setItem("boardPosts", JSON.stringify(posts));
 
     alert("게시글이 성공적으로 등록되었습니다.");
-    location.href = 'board.html';
-  });
+    location.href = "../html/board.html";
 });

@@ -58,7 +58,7 @@ function renderCartItems(items) {
     const itemHTML = `
             <div class="cart-item">
                 <div class="cart-item-image">
-                    <a href="./product.html?id=${item.id}">
+                    <a href="../html/product.html?id=${item.id}">
                         <img src="${item.image}" alt="${item.name}">
                     </a>
                 </div>
@@ -86,7 +86,7 @@ function calculateTotalPrice(items) {
 function updateHeaderForCart(user) {
   const $userMenu = $(".user-menu");
   if (!user) {
-    const loggedOutMenu = `<a href="./signup.html">회원가입</a> <a href="index.html">로그인</a>`;
+    const loggedOutMenu = `<a href="../html/signup.html">회원가입</a> <a href="../index.html">로그인</a>`;
     $userMenu.html(loggedOutMenu);
   } else {
     const loggedInMenu = `
