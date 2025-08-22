@@ -149,7 +149,7 @@ cd 04_JS-_interactive_webpage
 
 프로젝트 링크: [https://github.com/andrew00874/04_JS-_interactive_webpage](https://github.com/andrew00874/04_JS-_interactive_webpage)
 
-라이브 데모: [https://andrew00874.github.io/04_JS-_interactive_webpage/](https://andrew00874.github.io/04_JS-_interactive_webpage/)
+라이브 데모: [https://mujinjang-mall.vercel.app/](https://mujinjang-mall.vercel.app/)
 
 ---
 
