@@ -82,7 +82,7 @@ $(function () {
           </div>
           <div id="suggestions-container"></div>
         </div>
-        <span class="welcome-msg">${user.name}님</span>
+        <strong class="welcome-msg">${user.name}님 환영합니다!</strong>
         <a id="logout">로그아웃</a>
         <a href="./cart.html">장바구니</a>
       `;

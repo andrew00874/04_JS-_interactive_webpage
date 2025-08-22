@@ -137,7 +137,7 @@ $(document).ready(function () {
       });
     } else {
       const loggedInMenu = `
-        <span class="welcome-msg" style="font-weight:bold;">${user.name}님</span>
+        <strong class="welcome-msg" style="font-weight:bold;">${user.name}님 환영합니다!</strong>
         <a id="logout">로그아웃</a>
         <a href="./cart.html">장바구니</a>
       `;
