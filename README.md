@@ -3,7 +3,7 @@
 현대적이고 사용자 친화적인 온라인 패션 쇼핑몰 웹사이트입니다. 완전한 프론트엔드 기반으로 구현되었으며, 실제 쇼핑몰의 핵심 기능들을 포함하고 있습니다.
 
 ##  라이브 데모
-**👉 [무진장 쇼핑몰 체험하기](https://andrew00874.github.io/04_JS-_interactive_webpage/)**
+**👉 [무진장 쇼핑몰 체험하기](https://mujinjang-mall.vercel.app/)**
 
 ## 리포지토리
 **[GitHub Repository](https://github.com/andrew00874/04_JS-_interactive_webpage.git)**
