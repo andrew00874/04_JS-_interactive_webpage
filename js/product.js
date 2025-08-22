@@ -239,6 +239,13 @@ $(document).ready(function () {
     // 로그아웃 상태일 때
     if (!user) {
       const loggedOutMenu = `
+        <div class="search-container">
+          <div class="search-box">
+            <input type="text" id="search" placeholder="검색어 입력" />
+            <i class="fa-solid fa-magnifying-glass" id="glass"></i>
+          </div>
+          <div id="suggestions-container"></div>
+        </div>
         <a href="./signup.html">회원가입</a>
         <a id="login">로그인</a>
         <a href="./cart.html">장바구니</a>
